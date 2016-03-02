@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+
+    <title>Soundbored</title>
+
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/soundbored.css">
+  </head>
+  <body>
+    <main id="app"></main>
+
+    <script>
+      var path = require('path');
+
+      require('babel-register');
+
+      // Add src/browser to global paths so that we can import soundbored things
+      // with paths like 'soundbored/blah'.
+      require('module').globalPaths.push(path.resolve(__dirname, '../src/browser'));
+
+      // Let's go!
+      require('soundbored').start();
+    </script>
+  </body>
+</html>

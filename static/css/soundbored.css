@@ -1,0 +1,21 @@
+.board {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.board .button {
+    border: 1px solid #000;
+    flex: 1 0;
+    height: 200px;
+    width: 200px;
+}
+
+.board .button.assigned {
+    background: #000;
+    color: #FFF;
+}
+
+.board .button .dropzone {
+    width: 100%;
+    height: 100%;
+}
