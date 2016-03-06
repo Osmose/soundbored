@@ -18,6 +18,34 @@ export class App extends Component {
         this.state = state;
     }
 
+    serializeState() {
+        let serialized = {};
+
+        // Save sounds
+        for (let key of KEYS) {
+            let sound = this.state[key];
+            if (sound) {
+                serialized[key] = sound.path;
+            }
+        }
+
+        return serialized;
+    }
+
+    loadSerializedState(serialized) {
+        let newState = {};
+
+        for (let key of KEYS) {
+            if (key in serialized) {
+                newState[key] = new Sound(serialized[key]);
+            } else {
+                newState[key] = null;
+            }
+        }
+
+        this.setState(newState);
+    }
+
     render() {
         return (
             <ul className="board">

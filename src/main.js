@@ -6,6 +6,7 @@
 const electron = require('electron');
 
 const app = electron.app;
+const dialog = electron.dialog;
 const Menu = electron.Menu;
 const BrowserWindow = electron.BrowserWindow;
 
@@ -62,21 +63,32 @@ app.on('ready', function() {
                     label: 'Open Preset...',
                     accelerator: 'Command+O',
                     click: function() {
-                        mainWindow.reload();
-                    }
-                },
-                {
-                    label: 'Save Preset',
-                    accelerator: 'Command+S',
-                    click: function() {
-                        mainWindow.openDevTools({detach: true});
+                        var paths = dialog.showOpenDialog({
+                            title: 'Open Preset',
+                            properties: ['openFile']
+                        });
+
+                        if (!paths) {
+                            return;
+                        }
+
+                        mainWindow.webContents.send('openPreset', paths[0]);
                     }
                 },
                 {
                     label: 'Save Preset As...',
-                    accelerator: 'Command+Shift+S',
+                    accelerator: 'Command+S',
                     click: function() {
-                        app.quit();
+                        var path = dialog.showSaveDialog({
+                            title: 'Save Preset',
+                            properties: ['openFile']
+                        });
+
+                        if (!path) {
+                            return;
+                        }
+
+                        mainWindow.webContents.send('savePresetAs', path);
                     }
                 }
             ]
