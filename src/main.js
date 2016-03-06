@@ -4,9 +4,9 @@
  * Since Babel isn't set up yet, this file can't use ES2015 stuff.
  */
 const electron = require('electron');
-const Menu = require('menu');
 
 const app = electron.app;
+const Menu = electron.Menu;
 const BrowserWindow = electron.BrowserWindow;
 
 
@@ -43,14 +43,40 @@ app.on('ready', function() {
                     label: 'Open DevTools',
                     accelerator: 'Command+K',
                     click: function() {
-                      mainWindow.openDevTools({detach: true});
+                        mainWindow.openDevTools({detach: true});
                     }
                 },
                 {
                     label: 'Quit',
                     accelerator: 'Command+Q',
                     click: function() {
-                      app.quit();
+                        app.quit();
+                    }
+                }
+            ]
+        },
+        {
+            label: 'File',
+            submenu: [
+                {
+                    label: 'Open Preset...',
+                    accelerator: 'Command+O',
+                    click: function() {
+                        mainWindow.reload();
+                    }
+                },
+                {
+                    label: 'Save Preset',
+                    accelerator: 'Command+S',
+                    click: function() {
+                        mainWindow.openDevTools({detach: true});
+                    }
+                },
+                {
+                    label: 'Save Preset As...',
+                    accelerator: 'Command+Shift+S',
+                    click: function() {
+                        app.quit();
                     }
                 }
             ]

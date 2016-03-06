@@ -1,21 +1,65 @@
-.board {
-    display: flex;
-    flex-wrap: wrap;
+@font-face {
+  font-family: 'Fira Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Fira Sans'), local('FiraSans-Regular'), url(../fonts/Fira_Sans_Regular.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+@font-face {
+  font-family: 'Fira Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Fira Sans Bold'), local('FiraSans-Bold'), url(../fonts/Fira_Sans_Bold.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+/*
+Palette
+Dark - #010000
+Med - #393845
+Light - #9B96A3
+Dark Red - #5C0009
+Light Red - #940315
+*/
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+  background: #393845;
+  color: #9B96A3;
+  font-family: 'Fira Sans';
+  padding: 10px;
+}
+
+.board .row {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .board .button {
-    border: 1px solid #000;
-    flex: 1 0;
-    height: 200px;
-    width: 200px;
+  border: 2px solid #9B96A3;
+  border-radius: 4px;
+  flex: 1 0;
+  height: 120px;
+  margin: 5px;
+  width: 120px;
 }
 
 .board .button.assigned {
-    background: #000;
-    color: #FFF;
+  background: #9B96A3;
+  color: #940315;
+}
+
+.board .button .key {
+  margin: 10px;
+  text-transform: uppercase;
+  font-size: 24px;
 }
 
 .board .button .dropzone {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
