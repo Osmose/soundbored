@@ -22,8 +22,9 @@ export function start() {
 
     for (let key of KEYS) {
         keymaster(key, function() {
-            if (app.state[key] !== null) {
-                app.state[key].play();
+            let sound = app.state.keys.get(key);
+            if (sound !== null) {
+                sound.play();
             }
         });
     }

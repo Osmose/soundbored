@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import Immutable from 'immutable';
 import React, {Component} from 'react';
 import Dropzone from 'react-dropzone';
 
@@ -10,22 +11,24 @@ export class App extends Component {
     constructor(props) {
         super(props);
 
-        let state = {};
+        let keys = {};
         for (let key of KEYS) {
-            state[key] = null;
+            keys[key] = null;
         }
 
-        this.state = state;
+        this.state = {
+            keys: new Immutable.Map(keys)
+        };
     }
 
     serializeState() {
-        let serialized = {};
+        let serialized = {keys: {}};
 
         // Save sounds
         for (let key of KEYS) {
             let sound = this.state[key];
             if (sound) {
-                serialized[key] = sound.path;
+                serialized.keys[key] = sound.path;
             }
         }
 
@@ -33,13 +36,13 @@ export class App extends Component {
     }
 
     loadSerializedState(serialized) {
-        let newState = {};
+        let newState = {keys: new Immutable.Map()};
 
         for (let key of KEYS) {
             if (key in serialized) {
-                newState[key] = new Sound(serialized[key]);
+                newState.keys.set(key, new Sound(serialized.keys[key]));
             } else {
-                newState[key] = null;
+                newState.keys.set(key, null);
             }
         }
 
@@ -55,7 +58,7 @@ export class App extends Component {
                             <BoardButton
                                 key={key}
                                 boardKey={key}
-                                sound={this.state[key]}
+                                sound={this.state.keys.get(key)}
                                 onDrop={::this.handleDrop}
                             />
                         ))}
@@ -66,9 +69,9 @@ export class App extends Component {
     }
 
     handleDrop(key, files) {
-        let changes = {};
-        changes[key] = new Sound(files[0].path);
-        this.setState(changes);
+        this.setState({
+            keys: this.state.keys.set(key, new Sound(files[0].path))
+        });
     }
 }
 
