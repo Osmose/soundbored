@@ -1,34 +1,18 @@
 import fs from 'fs';
 
 import electron from 'electron';
-import keymaster from 'keymaster';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import {App} from 'soundbored/components';
-import {KEYS} from 'soundbored/config';
+import {App} from './components';
 
 const ipcRenderer = electron.ipcRenderer;
 
 
-let app = null;
-
-
-export function start() {
-    app = ReactDOM.render(
-        <App />,
-        document.querySelector('#app')
-    );
-
-    for (let key of KEYS) {
-        keymaster(key, function() {
-            let sound = app.state.keys.get(key);
-            if (sound !== null) {
-                sound.play();
-            }
-        });
-    }
-}
+let app = ReactDOM.render(
+    <App />,
+    document.querySelector('#app-container')
+);
 
 
 ipcRenderer.on('openPreset', function(event, path) {

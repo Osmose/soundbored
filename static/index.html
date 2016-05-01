@@ -10,19 +10,7 @@
     <link rel="stylesheet" type="text/css" href="css/soundbored.css">
   </head>
   <body>
-    <main id="app"></main>
-
-    <script>
-      var path = require('path');
-
-      require('babel-register');
-
-      // Add src/browser to global paths so that we can import soundbored things
-      // with paths like 'soundbored/blah'.
-      require('module').globalPaths.push(path.resolve(__dirname, '../src/browser'));
-
-      // Let's go!
-      require('soundbored').start();
-    </script>
+    <main id="app-container"></main>
+    <script src="../src/renderer.js"></script>
   </body>
 </html>

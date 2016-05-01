@@ -4,9 +4,9 @@
  */
 
 export const ROWS = [
-    ['q', 'w', 'e', 'r', 't'],
-    ['a', 's', 'd', 'f', 'g'],
-    ['z', 'x', 'c', 'v', 'b']
+    ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i'],
+    ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k'],
+    ['z', 'x', 'c', 'v', 'b', 'n', 'm', ',']
 ];
 
 export const KEYS = ROWS.reduce((prev, cur) => prev.concat(cur));
